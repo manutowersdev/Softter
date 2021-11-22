@@ -1,0 +1,16 @@
+.main {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+@media screen and (min-width: 520px) {
+  .main {
+    width: var(--mobile);
+    height: 90vh;
+  }
+}

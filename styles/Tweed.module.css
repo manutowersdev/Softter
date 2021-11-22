@@ -1,0 +1,13 @@
+.tweed {
+  border-bottom: 2px solid rgb(245, 245, 245);
+  display: flex;
+  padding: 0.625rem 0.9375rem;
+}
+
+.div {
+  padding-right: 0.625rem;
+}
+
+.p {
+  line-height: 1.3125;
+}
