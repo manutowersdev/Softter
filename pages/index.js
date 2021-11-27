@@ -1,29 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import styles from "../styles/Index.module.css";
 import Button from "../components/Button/Button";
 import GitHub from "../components/Icons/GitHub";
-import {
-  loginWithGitHub,
-  onAuthStateChangedFunction,
-} from "../firebase/client";
+import { loginWithGitHub } from "../firebase/client";
 import Avatar from "../components/Avatar/Avatar";
 import Logo from "../components/Icons/Logo";
 import AppLayout from "../components/AppLayout/AppLayout";
+import { useRouter } from "next/router";
+import useUser, { USER_STATES } from "../hooks/useUser";
 
 export default function Home() {
-  const [user, setUser] = useState(null);
+  const user = useUser();
+  const router = useRouter();
 
   useEffect(() => {
-    onAuthStateChangedFunction(setUser);
-  }, []);
+    user && router.replace("/home");
+  }, [user]);
 
   const handleClick = () => {
-    loginWithGitHub()
-      .then(setUser)
-      .catch((err) => {
-        console.error(err);
-      });
+    loginWithGitHub().catch((err) => {
+      console.error(err);
+    });
   };
 
   return (
@@ -41,12 +39,13 @@ export default function Home() {
           </h1>
           <h2 className={styles.h2}>From a Junior, to Juniors💻</h2>
           <div>
-            {user === null ? (
+            {user === USER_STATES.NOT_LOGGED && (
               <Button onClick={handleClick}>
                 <GitHub width={24} height={24} fill="white" />
                 Login with GitHub
               </Button>
-            ) : (
+            )}
+            {user && user.avatar && (
               <div>
                 <Avatar
                   src={user.avatar}
@@ -55,6 +54,9 @@ export default function Home() {
                   withText
                 />
               </div>
+            )}
+            {user === USER_STATES.NOT_KNOWN && (
+              <img src="loader.gif" alt="icono loading" />
             )}
           </div>
         </section>

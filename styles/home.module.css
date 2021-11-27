@@ -1,9 +1,11 @@
 .header {
-  border-bottom: 1px solid #ccc;
+  align-items: center;
+  background: #ffffffaa;
+  backdrop-filter: blur(0.3125rem);
+  border-bottom: 1px solid #eee;
+  display: flex;
   height: 3.0625rem;
   position: sticky;
-  display: flex;
-  align-items: center;
   top: 0;
   width: 100%;
 }
@@ -11,16 +13,18 @@
 .h2 {
   font-size: 1.3125rem;
   font-weight: 700;
+  padding-left: 0.9375rem;
 }
 
 .nav {
   position: sticky;
   bottom: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eee;
   height: 3.0625rem;
   width: 100%;
+  background: #ffffff;
 }
 
-.section {
-  padding-top: 3.0625rem;
+.tweedsCont {
+  overflow-y: hidden;
 }

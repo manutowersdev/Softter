@@ -25,4 +25,10 @@ a {
   display: grid;
   height: 100vh;
   place-items: center;
+  overflow: hidden;
+}
+
+textarea,
+input {
+  font-family: sans-serif;
 }

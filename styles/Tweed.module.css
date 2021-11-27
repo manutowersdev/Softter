@@ -1,5 +1,5 @@
 .tweed {
-  border-bottom: 2px solid rgb(245, 245, 245);
+  border-bottom: 2px solid #eee;
   display: flex;
   padding: 0.625rem 0.9375rem;
 }

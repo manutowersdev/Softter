@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AppLayout from "../../components/AppLayout/AppLayout";
 import Tweed from "../../components/Tweed";
+import useUser from "../../hooks/useUser";
 import styles from "../../styles/home.module.css";
 
 export default function HomePage() {
   const [Timeline, setTimeline] = useState([]);
+  const user = useUser();
 
   useEffect(() => {
-    fetch("http://192.168.5.103:3001/api/statuses/home_timeline")
-      .then((res) => res.json())
-      .then(setTimeline);
-  }, []);
+    user &&
+      fetch("http://192.168.5.103:3000/api/statuses/home_timeline")
+        .then((res) => res.json())
+        .then(setTimeline);
+  }, [user]);
 
   return (
     <AppLayout>
@@ -19,7 +22,7 @@ export default function HomePage() {
         <h2 className={styles.h2}>Inicio</h2>
       </header>
       <section className={styles.section}>
-        <div>
+        <div className={styles.tweedsCont}>
           {Timeline &&
             Timeline.map(({ id, username, avatar, message }) => {
               return (
