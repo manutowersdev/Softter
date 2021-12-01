@@ -2,7 +2,14 @@ import React from "react";
 import Avatar from "../Avatar/Avatar";
 import styles from "../../styles/Tweed.module.css";
 
-export default function Tweed({ avatar, username, message, id }) {
+export default function Tweed({
+  avatar,
+  username,
+  content,
+  id,
+  createdAt,
+  userId,
+}) {
   return (
     <article className={styles.tweed} key={id}>
       <div className={styles.div}>
@@ -10,7 +17,9 @@ export default function Tweed({ avatar, username, message, id }) {
       </div>
       <section>
         <strong className={styles.username}>{username}</strong>
-        <p className={styles.p}>{message}</p>
+        <span> · </span>
+        <span className={styles.date}>{createdAt}</span>
+        <p className={styles.p}>{content}</p>
       </section>
     </article>
   );

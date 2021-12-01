@@ -1,19 +1,25 @@
 .button {
+  align-items: center;
   background-color: var(--gray);
-  padding: 0.8rem;
-  color: white;
-  font-weight: 700;
   border-radius: 2rem;
   border: 2px solid transparent;
-  transition-duration: 300ms;
+  color: white;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  font-weight: 700;
+  padding: 0.8rem;
+  transition-duration: 300ms;
+  user-select: none;
 }
 
 .button:hover {
   background-color: var(--black);
   border: 2px solid var(--gray);
+}
+
+.button[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .button > :global(svg) {

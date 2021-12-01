@@ -11,3 +11,8 @@
 .p {
   line-height: 1.3125;
 }
+
+.date {
+  color: #555;
+  font-size: 0.875rem;
+}
