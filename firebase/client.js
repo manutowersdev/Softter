@@ -88,10 +88,11 @@ export async function getLatestTweeds() {
       const data = doc.data();
       const id = doc.id;
       const { createdAt } = data;
+
       return {
         ...data,
         id,
-        createdAt: createdAt.toDate().toLocaleDateString(),
+        createdAt: +createdAt.toDate(),
       };
     });
     return tweeds;

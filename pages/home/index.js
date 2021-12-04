@@ -3,7 +3,7 @@ import AppLayout from "../../components/AppLayout/AppLayout";
 import Tweed from "../../components/Tweed";
 import { getLatestTweeds } from "../../firebase/client";
 import useUser from "../../hooks/useUser";
-import styles from "../../styles/home.module.css";
+import styles from "../../styles/HomePage.module.css";
 
 export default function HomePage() {
   const [Timeline, setTimeline] = useState([]);

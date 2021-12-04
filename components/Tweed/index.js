@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "../Avatar/Avatar";
 import styles from "../../styles/Tweed.module.css";
+import useTimeAgo from "../../hooks/useTimeAgo";
 
 export default function Tweed({
   avatar,
@@ -10,6 +11,8 @@ export default function Tweed({
   createdAt,
   userId,
 }) {
+  const timeago = useTimeAgo(createdAt);
+
   return (
     <article className={styles.tweed} key={id}>
       <div className={styles.div}>
@@ -18,7 +21,7 @@ export default function Tweed({
       <section>
         <strong className={styles.username}>{username}</strong>
         <span> · </span>
-        <span className={styles.date}>{createdAt}</span>
+        <span className={styles.date}>{timeago}</span>
         <p className={styles.p}>{content}</p>
       </section>
     </article>
