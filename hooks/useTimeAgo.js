@@ -20,10 +20,9 @@ const getDateDiffs = (timestamp) => {
 };
 
 export default function useTimeAgo(timeStamp) {
-  const [timeAgo, setTimeAgo] = useState(getDateDiffs(timeStamp));
+  const [timeAgo, setTimeAgo] = useState(() => getDateDiffs(timeStamp));
 
   useEffect(() => {
-    console.log(timeAgo);
     const interval = setInterval(() => {
       const newTimeAgo = getDateDiffs(timeStamp);
       setTimeAgo(newTimeAgo);

@@ -4,6 +4,11 @@ import Tweed from "../../components/Tweed";
 import { getLatestTweeds } from "../../firebase/client";
 import useUser from "../../hooks/useUser";
 import styles from "../../styles/HomePage.module.css";
+import Create from "../../components/Icons/Create";
+import Home from "../../components/Icons/Home";
+import Search from "../../components/Icons/Search";
+import Link from "next/link";
+import Head from "next/head";
 
 export default function HomePage() {
   const [Timeline, setTimeline] = useState([]);
@@ -19,6 +24,9 @@ export default function HomePage() {
   return (
     <AppLayout>
       {/* <Avatar/> */}
+      <Head>
+        <title>Inicio / Tweetter</title>
+      </Head>
       <header className={styles.header}>
         <h2 className={styles.h2}>Inicio</h2>
       </header>
@@ -42,7 +50,23 @@ export default function HomePage() {
             )}
         </div>
       </section>
-      <nav className={styles.nav}></nav>
+      <nav className={styles.nav}>
+        <Link href="/home">
+          <a>
+            <Home width="28" height="28" />
+          </a>
+        </Link>
+        <Link href="/search">
+          <a>
+            <Search width="28" height="28" />
+          </a>
+        </Link>
+        <Link href="/compose/tweed">
+          <a>
+            <Create width="28" height="28" />
+          </a>
+        </Link>
+      </nav>
     </AppLayout>
   );
 }

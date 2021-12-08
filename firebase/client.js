@@ -5,6 +5,8 @@ import {
   collection,
   addDoc,
   getDocs,
+  orderBy,
+  query,
 } from "firebase/firestore";
 import {
   signInWithPopup,
@@ -83,7 +85,11 @@ export async function addTweed({ avatar, userId, content, username }) {
 
 export async function getLatestTweeds() {
   try {
-    const { docs } = await getDocs(collection(database, "tweeds"));
+    const sortedTweeds = query(
+      collection(database, "tweeds"),
+      orderBy("createdAt", "desc")
+    );
+    const { docs } = await getDocs(sortedTweeds);
     const tweeds = docs.map((doc) => {
       const data = doc.data();
       const id = doc.id;

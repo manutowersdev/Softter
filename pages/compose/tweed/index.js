@@ -5,6 +5,7 @@ import useUser from "../../../hooks/useUser";
 import styles from "../../../styles/ComposeTweed.module.css";
 import { addTweed } from "../../../firebase/client";
 import router from "next/router";
+import Head from "next/head";
 
 export default function ComposeTweed() {
   const user = useUser();
@@ -47,6 +48,9 @@ export default function ComposeTweed() {
 
   return (
     <AppLayout>
+      <Head>
+        <title>Crear un Tweed / Tweetter</title>
+      </Head>
       <form onSubmit={handleSubmit}>
         <textarea
           onChange={handleChange}
