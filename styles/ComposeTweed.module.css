@@ -3,14 +3,14 @@
 }
 
 .textarea {
-  border: 3px solid transparent;
   border-radius: 0.625rem;
+  border: 3px solid transparent;
   font-size: 1.3125rem;
+  min-height: 12.5rem;
+  outline: 0;
   padding: 0.9375rem;
   resize: none;
   width: 100%;
-  outline: 0;
-  min-height: 12.5rem;
 }
 
 .textareaDraggedIn {
@@ -19,4 +19,38 @@
 
 .buttonCont {
   padding: 0.9375rem;
+}
+
+.uploadedImg {
+  border-radius: 10px;
+  height: auto;
+  width: 100%;
+}
+
+.ImgSection {
+  position: relative;
+  width: 30rem;
+}
+
+.deleteImgButton {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 999px;
+  border: 0;
+  color: white;
+  font-size: 24px;
+  height: 20px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 20px;
+}
+
+.composeTweedWrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.avatar {
+  padding-top: 20px;
+  padding-left: 10px;
 }

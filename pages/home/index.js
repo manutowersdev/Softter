@@ -34,9 +34,10 @@ export default function HomePage() {
         <div className={styles.tweedsCont}>
           {Timeline &&
             Timeline.map(
-              ({ id, username, avatar, content, userId, createdAt }) => {
+              ({ id, username, avatar, content, userId, createdAt, img }) => {
                 return (
                   <Tweed
+                    img={img}
                     key={id}
                     createdAt={createdAt}
                     username={username}

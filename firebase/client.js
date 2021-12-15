@@ -54,7 +54,7 @@ export const loginWithGitHub = () => {
   return firebaseAuth.signInWithPopup(auth, githubProvider);
 };
 
-export async function addTweed({ avatar, userId, content, username }) {
+export async function addTweed({ avatar, userId, content, username, img }) {
   try {
     const newTweed = await firebaseFirestore.addDoc(
       firebaseFirestore.collection(database, "tweeds"),
@@ -66,6 +66,7 @@ export async function addTweed({ avatar, userId, content, username }) {
         createdAt: firebaseFirestore.Timestamp.fromDate(new Date()),
         likesCount: 0,
         sharedCount: 0,
+        img,
       }
     );
     return newTweed;
@@ -101,6 +102,6 @@ export async function getLatestTweeds() {
 export async function uploadImage(file) {
   const ref = firebaseStorage.ref(storageInstance, `images/${file.name}`);
   const { task } = await firebaseStorage.uploadBytesResumable(ref, file);
-  console.log(task);
-  return task;
+  const url = await firebaseStorage.getDownloadURL(ref);
+  return { task: task, url };
 }

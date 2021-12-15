@@ -10,6 +10,7 @@ export default function Tweed({
   id,
   createdAt,
   userId,
+  img,
 }) {
   const timeago = useTimeAgo(createdAt);
 
@@ -23,6 +24,7 @@ export default function Tweed({
         <span> · </span>
         <span className={styles.date}>{timeago}</span>
         <p className={styles.p}>{content}</p>
+        {img && <img src={img} className={styles.tweedImg} />}
       </section>
     </article>
   );

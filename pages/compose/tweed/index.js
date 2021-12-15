@@ -6,6 +6,7 @@ import styles from "../../../styles/ComposeTweed.module.css";
 import { addTweed, uploadImage } from "../../../firebase/client";
 import router from "next/router";
 import Head from "next/head";
+import Avatar from "../../../components/Avatar/Avatar";
 
 export default function ComposeTweed() {
   const user = useUser();
@@ -29,10 +30,11 @@ export default function ComposeTweed() {
   const [Status, setStatus] = useState(COMPOSE_STATES.USER_NOT_KNOWN);
   const [Drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE);
   const [Task, setTask] = useState(null);
-  // const [imgURL, setImgURL] = useState(null);
+  const [imgURL, setImgURL] = useState(null);
 
   useEffect(() => {
     if (Task) {
+      const { task, url } = Task;
       const onProgress = (progress) => {
         console.log(progress);
       };
@@ -41,11 +43,11 @@ export default function ComposeTweed() {
         console.log(err);
       };
 
-      const onComplete = (complete) => {
+      const onComplete = async (complete) => {
         console.log(complete);
+        setImgURL(url);
       };
-      console.log(Task);
-      Task.on("state_changed", onProgress, onError, onComplete);
+      task.on("state_changed", onProgress, onError, onComplete);
     }
   }, [Task]);
 
@@ -63,6 +65,7 @@ export default function ComposeTweed() {
         content: Message,
         userId: user.userId,
         username: user.username,
+        img: imgURL,
       });
       if (response) {
         setStatus(COMPOSE_STATES.SUCCESS);
@@ -93,8 +96,8 @@ export default function ComposeTweed() {
       e.dataTransfer.files[0] &&
       e.dataTransfer.files[0].type.includes("image")
     ) {
-      const task = await uploadImage(e.dataTransfer.files[0]);
-      setTask(task);
+      const { task, url } = await uploadImage(e.dataTransfer.files[0]);
+      setTask({ task, url });
     }
   };
 
@@ -103,23 +106,41 @@ export default function ComposeTweed() {
       <Head>
         <title>Crear un Tweed / Tweetter</title>
       </Head>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <textarea
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          onChange={handleChange}
-          placeholder="¿Qué esta pasando?"
-          className={`${styles.textarea}
+      <section className={styles.composeTweedWrapper}>
+        {user && (
+          <section className={styles.avatar}>
+            <Avatar src={user.avatar} />
+          </section>
+        )}
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <textarea
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onChange={handleChange}
+            placeholder="¿Qué esta pasando?"
+            className={`${styles.textarea}
             ${
               Drag === DRAG_IMAGE_STATES.DRAG_OVER && styles.textareaDraggedIn
             }`}
-          value={Message}
-        ></textarea>
-        <div className={styles.buttonCont}>
-          <Button disabled={isDisabled}>Tweed</Button>
-        </div>
-      </form>
+            value={Message}
+          ></textarea>
+          {imgURL && (
+            <section className={styles.ImgSection}>
+              <button
+                className={styles.deleteImgButton}
+                onClick={() => setImgURL(null)}
+              >
+                X
+              </button>
+              <img className={styles.uploadedImg} src={imgURL} />
+            </section>
+          )}
+          <div className={styles.buttonCont}>
+            <Button disabled={isDisabled}>Tweed</Button>
+          </div>
+        </form>
+      </section>
     </AppLayout>
   );
 }

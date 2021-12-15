@@ -16,3 +16,10 @@
   color: #555;
   font-size: 0.875rem;
 }
+
+.tweedImg {
+  border-radius: 10px;
+  height: auto;
+  margin-top: 0.625rem;
+  width: 50%;
+}
