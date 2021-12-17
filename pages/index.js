@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Tweetter</title>
+        <title>Softter</title>
         <meta name="description" content="Twitter Clone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -35,7 +35,7 @@ export default function Home() {
         <section className={styles.section}>
           <Logo width="100" />
           <h1 className={styles.title}>
-            <a href="">Tweetter</a>
+            <a href="">Softter</a>
           </h1>
           <h2 className={styles.h2}>From a Junior, to Juniors💻</h2>
           <div>

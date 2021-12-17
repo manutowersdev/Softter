@@ -54,10 +54,10 @@ export const loginWithGitHub = () => {
   return firebaseAuth.signInWithPopup(auth, githubProvider);
 };
 
-export async function addTweed({ avatar, userId, content, username, img }) {
+export async function addSoftee({ avatar, userId, content, username, img }) {
   try {
-    const newTweed = await firebaseFirestore.addDoc(
-      firebaseFirestore.collection(database, "tweeds"),
+    const newSoftee = await firebaseFirestore.addDoc(
+      firebaseFirestore.collection(database, "softees"),
       {
         avatar,
         content,
@@ -69,20 +69,20 @@ export async function addTweed({ avatar, userId, content, username, img }) {
         img,
       }
     );
-    return newTweed;
+    return newSoftee;
   } catch (error) {
-    console.error("Error writing that tweed 😢:", error);
+    console.error("Error writing that Softee 😢:", error);
   }
 }
 
-export async function getLatestTweeds() {
+export async function getLatestSoftees() {
   try {
-    const sortedTweeds = firebaseFirestore.query(
-      firebaseFirestore.collection(database, "tweeds"),
+    const sortedSoftees = firebaseFirestore.query(
+      firebaseFirestore.collection(database, "softees"),
       firebaseFirestore.orderBy("createdAt", "desc")
     );
-    const { docs } = await firebaseFirestore.getDocs(sortedTweeds);
-    const tweeds = docs.map((doc) => {
+    const { docs } = await firebaseFirestore.getDocs(sortedSoftees);
+    const softees = docs.map((doc) => {
       const data = doc.data();
       const id = doc.id;
       const { createdAt } = data;
@@ -93,7 +93,7 @@ export async function getLatestTweeds() {
         createdAt: +createdAt.toDate(),
       };
     });
-    return tweeds;
+    return softees;
   } catch (error) {
     console.error(error);
   }

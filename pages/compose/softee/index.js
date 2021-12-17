@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import AppLayout from "../../../components/AppLayout/AppLayout";
 import Button from "../../../components/Button/Button";
 import useUser from "../../../hooks/useUser";
-import styles from "../../../styles/ComposeTweed.module.css";
-import { addTweed, uploadImage } from "../../../firebase/client";
+import styles from "../../../styles/ComposeSoftee.module.css";
+import { addSoftee, uploadImage } from "../../../firebase/client";
 import router from "next/router";
 import Head from "next/head";
 import Avatar from "../../../components/Avatar/Avatar";
 
-export default function ComposeTweed() {
+export default function ComposeSoftee() {
   const user = useUser();
   const [Message, setMessage] = useState("");
 
@@ -60,7 +60,7 @@ export default function ComposeTweed() {
     event.preventDefault();
     setStatus("loading");
     try {
-      const response = await addTweed({
+      const response = await addSoftee({
         avatar: user.avatar,
         content: Message,
         userId: user.userId,
@@ -104,9 +104,9 @@ export default function ComposeTweed() {
   return (
     <AppLayout>
       <Head>
-        <title>Crear un Tweed / Tweetter</title>
+        <title>Crear un Softee / Softter</title>
       </Head>
-      <section className={styles.composeTweedWrapper}>
+      <section className={styles.composeSofteeWrapper}>
         {user && (
           <section className={styles.avatar}>
             <Avatar src={user.avatar} />
@@ -137,7 +137,7 @@ export default function ComposeTweed() {
             </section>
           )}
           <div className={styles.buttonCont}>
-            <Button disabled={isDisabled}>Tweed</Button>
+            <Button disabled={isDisabled}>Softeet</Button>
           </div>
         </form>
       </section>

@@ -8,7 +8,7 @@ export default function Header() {
       <ul className={styles.ul}>
         <li className={styles.li}>
           <Link href="/">
-            <img className={styles.img} src="/logo.jpg" alt="logo tweeter" />
+            <img className={styles.img} src="/logo.jpg" alt="logo softter" />
           </Link>
         </li>
         <li className={styles.li}>☰</li>

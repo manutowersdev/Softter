@@ -1,9 +1,9 @@
 import React from "react";
 import Avatar from "../Avatar/Avatar";
-import styles from "../../styles/Tweed.module.css";
+import styles from "../../styles/Softee.module.css";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
-export default function Tweed({
+export default function Softee({
   avatar,
   username,
   content,
@@ -15,7 +15,7 @@ export default function Tweed({
   const timeago = useTimeAgo(createdAt);
 
   return (
-    <article className={styles.tweed} key={id}>
+    <article className={styles.Softee} key={id}>
       <div className={styles.div}>
         <Avatar src={avatar} alt={username} />
       </div>
@@ -24,7 +24,7 @@ export default function Tweed({
         <span> · </span>
         <span className={styles.date}>{timeago}</span>
         <p className={styles.p}>{content}</p>
-        {img && <img src={img} className={styles.tweedImg} />}
+        {img && <img src={img} className={styles.softeeImg} />}
       </section>
     </article>
   );

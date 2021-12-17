@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppLayout from "../../components/AppLayout/AppLayout";
-import Tweed from "../../components/Tweed";
-import { getLatestTweeds } from "../../firebase/client";
+import Softee from "../../components/Softee";
+import { getLatestSoftees } from "../../firebase/client";
 import useUser from "../../hooks/useUser";
 import styles from "../../styles/HomePage.module.css";
 import Create from "../../components/Icons/Create";
@@ -16,8 +16,8 @@ export default function HomePage() {
 
   useEffect(async () => {
     if (user) {
-      const tweeds = await getLatestTweeds();
-      setTimeline(tweeds);
+      const softees = await getLatestSoftees();
+      setTimeline(softees);
     }
   }, [user]);
 
@@ -25,18 +25,18 @@ export default function HomePage() {
     <AppLayout>
       {/* <Avatar/> */}
       <Head>
-        <title>Inicio / Tweetter</title>
+        <title>Inicio / Softter</title>
       </Head>
       <header className={styles.header}>
         <h2 className={styles.h2}>Inicio</h2>
       </header>
       <section className={styles.section}>
-        <div className={styles.tweedsCont}>
+        <div className={styles.softeesCont}>
           {Timeline &&
             Timeline.map(
               ({ id, username, avatar, content, userId, createdAt, img }) => {
                 return (
-                  <Tweed
+                  <Softee
                     img={img}
                     key={id}
                     createdAt={createdAt}
@@ -62,7 +62,7 @@ export default function HomePage() {
             <Search width="28" height="28" />
           </a>
         </Link>
-        <Link href="/compose/tweed">
+        <Link href="/compose/softee">
           <a>
             <Create width="28" height="28" />
           </a>
