@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AppLayout from "../../../components/AppLayout/AppLayout";
 import Button from "../../../components/Button/Button";
 import useUser from "../../../hooks/useUser";
 import styles from "../../../styles/ComposeSoftee.module.css";
@@ -102,7 +101,7 @@ export default function ComposeSoftee() {
   };
 
   return (
-    <AppLayout>
+    <>
       <Head>
         <title>Crear un Softee / Softter</title>
       </Head>
@@ -141,6 +140,6 @@ export default function ComposeSoftee() {
           </div>
         </form>
       </section>
-    </AppLayout>
+    </>
   );
 }

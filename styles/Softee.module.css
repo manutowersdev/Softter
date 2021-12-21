@@ -15,6 +15,11 @@
 .date {
   color: #555;
   font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.date:hover {
+  text-decoration: underline;
 }
 
 .softeeImg {

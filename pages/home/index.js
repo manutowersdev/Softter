@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AppLayout from "../../components/AppLayout/AppLayout";
 import Softee from "../../components/Softee";
 import { getLatestSoftees } from "../../firebase/client";
 import useUser from "../../hooks/useUser";
@@ -22,7 +21,7 @@ export default function HomePage() {
   }, [user]);
 
   return (
-    <AppLayout>
+    <>
       {/* <Avatar/> */}
       <Head>
         <title>Inicio / Softter</title>
@@ -68,6 +67,6 @@ export default function HomePage() {
           </a>
         </Link>
       </nav>
-    </AppLayout>
+    </>
   );
 }

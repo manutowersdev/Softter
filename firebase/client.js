@@ -13,7 +13,11 @@ const firebaseConfig = {
   measurementId: "G-0XZ0KQT4VY",
 };
 
-const app = firebaseApp.initializeApp(firebaseConfig);
+let app;
+
+if (!app) {
+  app = firebaseApp.initializeApp(firebaseConfig);
+}
 const database = firebaseFirestore.getFirestore(app);
 const storageInstance = firebaseStorage.getStorage(app);
 
