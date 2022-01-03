@@ -3,6 +3,8 @@ import Avatar from "../Avatar/Avatar";
 import styles from "../../styles/Softee.module.css";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { formatDate } from "../../hooks/helpers";
 
 export default function Softee({
   avatar,
@@ -13,13 +15,17 @@ export default function Softee({
   userId,
   img,
 }) {
+  const router = useRouter();
   const timeago = useTimeAgo(createdAt);
-  const titleTime = `${new Date(createdAt).toLocaleDateString()} ${new Date(
-    createdAt
-  ).toLocaleTimeString()}`;
+  const titleTime = formatDate(createdAt);
+
+  const handleArticleClick = (e) => {
+    e.preventDefault();
+    router.push(`/status/${id}`);
+  };
 
   return (
-    <article className={styles.Softee} key={id}>
+    <article onClick={handleArticleClick} className={styles.Softee} key={id}>
       <div className={styles.div}>
         <Avatar src={avatar} alt={username} />
       </div>

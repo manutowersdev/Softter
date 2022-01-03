@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:ip": "npm run dev -- -H 192.168.5.103",
+    "dev:ip": "npm run dev -- -H 192.168.5.130",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --fix",

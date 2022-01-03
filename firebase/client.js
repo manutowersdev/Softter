@@ -78,6 +78,38 @@ export async function addSoftee({ avatar, userId, content, username, img }) {
     console.error("Error writing that Softee 😢:", error);
   }
 }
+/** */
+export async function listenLatestSoftees(callback) {
+  try {
+    const sortedSoftees = firebaseFirestore.query(
+      firebaseFirestore.collection(database, "softees"),
+      firebaseFirestore.orderBy("createdAt", "desc")
+    );
+
+    const documents = [];
+    await firebaseFirestore.onSnapshot(sortedSoftees, (querySnapshot) => {
+      querySnapshot.docs.map((doc) => {
+        return documents.push(mapSofteeFromFirebaseToSofteeObject(doc));
+      });
+    });
+    console.log(documents);
+    callback(documents);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const mapSofteeFromFirebaseToSofteeObject = (doc) => {
+  const data = doc.data();
+  const id = doc.id;
+  const { createdAt } = data;
+
+  return {
+    ...data,
+    id,
+    createdAt: +createdAt.toDate(),
+  };
+};
 
 export async function getLatestSoftees() {
   try {
@@ -86,17 +118,7 @@ export async function getLatestSoftees() {
       firebaseFirestore.orderBy("createdAt", "desc")
     );
     const { docs } = await firebaseFirestore.getDocs(sortedSoftees);
-    const softees = docs.map((doc) => {
-      const data = doc.data();
-      const id = doc.id;
-      const { createdAt } = data;
-
-      return {
-        ...data,
-        id,
-        createdAt: +createdAt.toDate(),
-      };
-    });
+    const softees = docs.map(mapSofteeFromFirebaseToSofteeObject);
     return softees;
   } catch (error) {
     console.error(error);

@@ -33,11 +33,10 @@ export default function useTimeAgo(timeStamp) {
     };
   }, [timeStamp]);
 
-  const rtf = new Intl.RelativeTimeFormat(navigator.language, {
+  const rtf = new Intl.RelativeTimeFormat("es-ES", {
     style: "short",
   });
 
   const { value, unit } = timeAgo;
-
   return rtf.format(value, unit);
 }

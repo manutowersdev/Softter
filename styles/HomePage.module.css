@@ -5,6 +5,7 @@
   border-bottom: 1px solid #eee;
   display: flex;
   height: 3.0625rem;
+  padding: 0.625rem 0px;
   position: sticky;
   top: 0;
   width: 100%;
@@ -16,35 +17,37 @@
   padding-left: 0.9375rem;
 }
 
-.nav {
-  display: flex;
-  position: sticky;
-  bottom: 0;
-  border-top: 1px solid #eee;
-  height: 3.0625rem;
-  width: 100%;
+.footer {
   background: #ffffff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid white;
+  bottom: 0;
+  display: flex;
+  height: 3.0725rem;
+  position: sticky;
+  width: 100%;
 }
 
-.nav svg {
+.footer svg {
   stroke: var(--lightBlue);
 }
 
-.nav a {
+.footer a {
   align-items: center;
   display: flex;
   flex: 1 1 auto;
   height: 100%;
   justify-content: center;
+  padding: 0.625rem 0px;
 }
 
-.nav a:hover {
+.footer a:hover {
   background: radial-gradient(#b1a29655 15%, transparent 16%);
   background-size: 180px 180px;
   background-position: center;
 }
 
-.nav a:hover > :global(svg) {
+.footer a:hover > :global(svg) {
   stroke: var(--blue);
 }
 

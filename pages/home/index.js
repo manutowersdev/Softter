@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Softee from "../../components/Softee";
-import { getLatestSoftees } from "../../firebase/client";
+import { listenLatestSoftees } from "../../firebase/client";
 import useUser from "../../hooks/useUser";
 import styles from "../../styles/HomePage.module.css";
 import Create from "../../components/Icons/Create";
@@ -15,8 +15,11 @@ export default function HomePage() {
 
   useEffect(async () => {
     if (user) {
-      const softees = await getLatestSoftees();
-      setTimeline(softees);
+      if (user) {
+        await listenLatestSoftees(setTimeline);
+        // listenLastestSoftees(setTimeline)
+      }
+      // const softees = await getLatestSoftees();
     }
   }, [user]);
 
@@ -50,7 +53,7 @@ export default function HomePage() {
             )}
         </div>
       </section>
-      <nav className={styles.nav}>
+      <nav className={styles.footer}>
         <Link href="/home">
           <a>
             <Home width="28" height="28" />
