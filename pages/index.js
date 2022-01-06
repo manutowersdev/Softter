@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import Head from "next/head";
-import styles from "../styles/Index.module.css";
-import Button from "../components/Button/Button";
-import GitHub from "../components/Icons/GitHub";
+import styles from "styles/Index.module.css";
+import Button from "components/Button";
+import GitHub from "components/Icons/GitHub";
 import { loginWithGitHub } from "../firebase/client";
-import Avatar from "../components/Avatar/Avatar";
-import Logo from "../components/Icons/Logo";
+import Avatar from "components/Avatar";
+import Logo from "components/Icons/Logo";
 import { useRouter } from "next/router";
-import useUser, { USER_STATES } from "../hooks/useUser";
+import useUser, { USER_STATES } from "hooks/useUser";
 
 export default function Home() {
   const user = useUser();

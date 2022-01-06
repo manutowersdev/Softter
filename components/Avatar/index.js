@@ -1,4 +1,4 @@
-import styles from "../../styles/Avatar.module.css";
+import styles from "styles/Avatar.module.css";
 import React from "react";
 
 export default function Avatar({ alt, src, text, withText }) {

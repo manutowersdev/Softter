@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../../components/Button/Button";
-import useUser from "../../../hooks/useUser";
-import styles from "../../../styles/ComposeSoftee.module.css";
+import Button from "components/Button";
+import useUser from "hooks/useUser";
+import styles from "styles/ComposeSoftee.module.css";
 import { addSoftee, uploadImage } from "../../../firebase/client";
 import router from "next/router";
 import Head from "next/head";
-import Avatar from "../../../components/Avatar/Avatar";
+import Avatar from "components/Avatar";
+import Header from "components/Header";
+import Footer from "components/Footer";
 
 export default function ComposeSoftee() {
   const user = useUser();
@@ -105,6 +107,7 @@ export default function ComposeSoftee() {
       <Head>
         <title>Crear un Softee / Softter</title>
       </Head>
+      <Header location="Post softee" />
       <section className={styles.composeSofteeWrapper}>
         {user && (
           <section className={styles.avatar}>
@@ -140,6 +143,7 @@ export default function ComposeSoftee() {
           </div>
         </form>
       </section>
+      <Footer />
     </>
   );
 }

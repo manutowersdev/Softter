@@ -20,7 +20,11 @@ if (!app) {
 }
 const database = firebaseFirestore.getFirestore(app);
 const storageInstance = firebaseStorage.getStorage(app);
-
+/**
+ *
+ * @param {*} user
+ * @returns
+ */
 const mapUserFromFirebaseAuth = (user) => {
   if (user) {
     const {
@@ -43,7 +47,11 @@ const mapUserFromFirebaseAuth = (user) => {
     return null;
   }
 };
-
+/**
+ *
+ * @param {*} onChange
+ * @returns
+ */
 export function onAuthStateChangedFunction(onChange) {
   const auth = firebaseAuth.getAuth();
   return firebaseAuth.onAuthStateChanged(auth, (data) => {
@@ -51,13 +59,20 @@ export function onAuthStateChangedFunction(onChange) {
     onChange(normalizedUser);
   });
 }
-
+/**
+ *
+ * @returns
+ */
 export const loginWithGitHub = () => {
   const auth = firebaseAuth.getAuth();
   const githubProvider = new firebaseAuth.GithubAuthProvider();
   return firebaseAuth.signInWithPopup(auth, githubProvider);
 };
-
+/**
+ *
+ * @param {} param
+ * @returns
+ */
 export async function addSoftee({ avatar, userId, content, username, img }) {
   try {
     const newSoftee = await firebaseFirestore.addDoc(
@@ -78,7 +93,10 @@ export async function addSoftee({ avatar, userId, content, username, img }) {
     console.error("Error writing that Softee 😢:", error);
   }
 }
-/** */
+/**
+ *
+ * @param {*} callback
+ */
 export async function listenLatestSoftees(callback) {
   try {
     const sortedSoftees = firebaseFirestore.query(

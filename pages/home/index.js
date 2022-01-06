@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Softee from "../../components/Softee";
+import Softee from "components/Softee";
 import { listenLatestSoftees } from "../../firebase/client";
-import useUser from "../../hooks/useUser";
-import styles from "../../styles/HomePage.module.css";
-import Create from "../../components/Icons/Create";
-import Home from "../../components/Icons/Home";
-import Search from "../../components/Icons/Search";
-import Link from "next/link";
+import useUser from "hooks/useUser";
+import styles from "styles/HomePage.module.css";
 import Head from "next/head";
+import Header from "components/Header";
+import Footer from "components/Footer";
 
 export default function HomePage() {
   const [Timeline, setTimeline] = useState([]);
@@ -29,9 +27,7 @@ export default function HomePage() {
       <Head>
         <title>Inicio / Softter</title>
       </Head>
-      <header className={styles.header}>
-        <h2 className={styles.h2}>Inicio</h2>
-      </header>
+      <Header location="Inicio" />
       <section className={styles.section}>
         <div className={styles.softeesCont}>
           {Timeline &&
@@ -53,23 +49,7 @@ export default function HomePage() {
             )}
         </div>
       </section>
-      <nav className={styles.footer}>
-        <Link href="/home">
-          <a>
-            <Home width="28" height="28" />
-          </a>
-        </Link>
-        <Link href="/search">
-          <a>
-            <Search width="28" height="28" />
-          </a>
-        </Link>
-        <Link href="/compose/softee">
-          <a>
-            <Create width="28" height="28" />
-          </a>
-        </Link>
-      </nav>
+      <Footer />
     </>
   );
 }

@@ -48,6 +48,7 @@
 .composeSofteeWrapper {
   display: flex;
   align-items: flex-start;
+  height: 100%;
 }
 
 .avatar {

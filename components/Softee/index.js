@@ -1,10 +1,10 @@
 import React from "react";
-import Avatar from "../Avatar/Avatar";
-import styles from "../../styles/Softee.module.css";
-import useTimeAgo from "../../hooks/useTimeAgo";
+import Avatar from "components/Avatar";
+import styles from "styles/Softee.module.css";
+import useTimeAgo from "hooks/useTimeAgo";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { formatDate } from "../../hooks/helpers";
+import { formatDate } from "hooks/helpers";
 
 export default function Softee({
   avatar,

@@ -31,11 +31,3 @@
 .footer a:hover > :global(svg) {
   stroke: var(--blue);
 }
-
-.softeesCont {
-  overflow-y: hidden;
-}
-
-.section {
-  flex: 1;
-}

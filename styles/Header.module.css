@@ -1,20 +1,18 @@
 .header {
+  align-items: center;
+  background: #ffffffaa;
+  backdrop-filter: blur(0.3125rem);
+  border-bottom: 1px solid #eee;
+  display: flex;
+  height: 3.0625rem;
+  padding: 0.625rem 0px;
   position: sticky;
+  top: 0;
   width: 100%;
 }
 
-.img {
-  width: 3rem;
-}
-
-.ul {
-  padding: 0px 1rem 0px 1rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.li {
-  list-style-type: none;
-  user-select: none;
-  cursor: pointer;
+.h2 {
+  font-size: 1.3125rem;
+  font-weight: 700;
+  padding-left: 0.9375rem;
 }
