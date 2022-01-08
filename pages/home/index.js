@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Softee from "components/Softee";
-import { listenLatestSoftees } from "../../firebase/client";
+import { getLatestSoftees } from "../../firebase/client";
 import useUser from "hooks/useUser";
 import styles from "styles/HomePage.module.css";
 import Head from "next/head";
@@ -13,11 +13,8 @@ export default function HomePage() {
 
   useEffect(async () => {
     if (user) {
-      if (user) {
-        await listenLatestSoftees(setTimeline);
-        // listenLastestSoftees(setTimeline)
-      }
-      // const softees = await getLatestSoftees();
+      const softees = await getLatestSoftees();
+      setTimeline(softees);
     }
   }, [user]);
 

@@ -99,7 +99,7 @@ export async function addSoftee({ avatar, userId, content, username, img }) {
  */
 export async function listenLatestSoftees(callback) {
   try {
-    const sortedSoftees = firebaseFirestore.query(
+    const sortedSoftees = await firebaseFirestore.query(
       firebaseFirestore.collection(database, "softees"),
       firebaseFirestore.orderBy("createdAt", "desc")
     );
@@ -110,13 +110,17 @@ export async function listenLatestSoftees(callback) {
         return documents.push(mapSofteeFromFirebaseToSofteeObject(doc));
       });
     });
-    console.log(documents);
-    callback(documents);
+    console.log("docs", documents);
+    await callback(documents);
   } catch (error) {
     console.error(error);
   }
 }
-
+/**
+ *
+ * @param {*} doc
+ * @returns
+ */
 const mapSofteeFromFirebaseToSofteeObject = (doc) => {
   const data = doc.data();
   const id = doc.id;
@@ -128,7 +132,10 @@ const mapSofteeFromFirebaseToSofteeObject = (doc) => {
     createdAt: +createdAt.toDate(),
   };
 };
-
+/**
+ *
+ * @returns
+ */
 export async function getLatestSoftees() {
   try {
     const sortedSoftees = firebaseFirestore.query(
