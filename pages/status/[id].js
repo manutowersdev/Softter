@@ -2,6 +2,7 @@ import Header from "components/Header";
 import Softee from "../../components/Softee";
 import Head from "next/head";
 import Footer from "components/Footer";
+import styles from "styles/SingleSoftee.module.css";
 
 export default function SofteePage({ data }) {
   return (
@@ -11,6 +12,7 @@ export default function SofteePage({ data }) {
       </Head>
       <Header location="Softee" />
       <Softee {...data} />
+      <section className={styles.body}></section>
       <Footer />
     </>
   );

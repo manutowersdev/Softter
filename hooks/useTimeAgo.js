@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { formatDate } from "./helpers";
 
 const DATE_UNITS = [
   ["day", 86400],
@@ -38,5 +39,10 @@ export default function useTimeAgo(timeStamp) {
   });
 
   const { value, unit } = timeAgo;
+
+  if (unit === "day" && value < -20) {
+    return formatDate(timeStamp).slice(0, 10);
+  }
+
   return rtf.format(value, unit);
 }

@@ -32,7 +32,7 @@ export default function Softee({
       <section>
         <strong className={styles.username}>{username}</strong>
         <span> · </span>
-        <Link href={`/status/[id]`} as={`/status/${id}`}>
+        <Link href={`/status/[id]`}>
           <time className={styles.date} title={titleTime}>
             {timeago}
           </time>
