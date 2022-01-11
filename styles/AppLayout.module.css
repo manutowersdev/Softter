@@ -11,6 +11,11 @@
   overflow-y: auto;
 }
 
+.main::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 @media screen and (min-width: 520px) {
   .main {
     width: var(--mobile);

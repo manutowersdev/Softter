@@ -20,7 +20,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* <Avatar/> */}
       <Head>
         <title>Inicio / Softter</title>
       </Head>

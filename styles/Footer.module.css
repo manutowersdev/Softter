@@ -5,8 +5,14 @@
   bottom: 0;
   display: flex;
   height: 3.0725rem;
-  position: sticky;
+  position: fixed;
   width: 100%;
+}
+
+@media screen and (min-width: 520px) {
+  .footer {
+    position: sticky;
+  }
 }
 
 .footer svg {

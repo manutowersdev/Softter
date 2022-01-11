@@ -4,8 +4,8 @@
   backdrop-filter: blur(0.3125rem);
   border-bottom: 1px solid #eee;
   display: flex;
-  height: 3.0625rem;
-  padding: 0.625rem 0px;
+  height: 4rem;
+  padding: 0.625rem 1.25rem;
   position: sticky;
   top: 0;
   width: 100%;

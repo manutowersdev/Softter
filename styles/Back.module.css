@@ -1,0 +1,4 @@
+.backIcon:hover {
+  color: var(--gray);
+  cursor: pointer;
+}
