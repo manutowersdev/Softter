@@ -11,6 +11,10 @@
   overflow-y: auto;
 }
 
+.main.white {
+  background: rgb(0, 0, 0);
+}
+
 .main::-webkit-scrollbar {
   width: 0px;
   background: transparent;
