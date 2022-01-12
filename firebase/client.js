@@ -61,12 +61,19 @@ export function onAuthStateChangedFunction(onChange) {
 }
 /**
  *
- * @returns
+ * @returns FirebaseAuth Log In
  */
 export const loginWithGitHub = () => {
   const auth = firebaseAuth.getAuth();
   const githubProvider = new firebaseAuth.GithubAuthProvider();
   return firebaseAuth.signInWithPopup(auth, githubProvider);
+};
+/**
+ *
+ * @returns Sign out
+ */
+export const signOut = () => {
+  return firebaseAuth.getAuth().signOut();
 };
 /**
  *
