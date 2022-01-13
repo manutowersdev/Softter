@@ -11,6 +11,12 @@
   padding: 0.9375rem;
   resize: none;
   width: 100%;
+  transition-duration: 150ms;
+}
+
+.textarea.darkMode {
+  color: var(--darkModeTextColor);
+  background-color: var(--darkModeBlack);
 }
 
 .textareaDraggedIn {
@@ -49,9 +55,65 @@
   display: flex;
   align-items: flex-start;
   height: 100%;
+  transition-duration: 150ms;
+}
+
+.composeSofteeWrapper.darkMode {
+  background-color: var(--darkModeBlack);
+  color: var(--darkModeTextColor);
 }
 
 .avatar {
   padding-top: 20px;
   padding-left: 10px;
+}
+
+.hastagsArea {
+  border-radius: 0.625rem;
+  border: 3px solid transparent;
+  font-size: 1rem;
+  outline: 0;
+  padding: 0.9375rem;
+  resize: none;
+  /* border: 1px solid white; */
+  transition-duration: 150ms;
+}
+
+.hastagsArea.darkMode {
+  color: var(--darkModeTextColor);
+  background-color: var(--darkModeBlack);
+}
+
+.hastag {
+  background-color: var(--lightGray);
+  border-radius: 2rem;
+  color: var(--blue);
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  gap: 0.5rem;
+  height: max-content;
+  padding: 0.125rem 0.625rem;
+  transition-duration: 150ms;
+}
+
+.hastag:hover {
+  background-color: var(--gray);
+}
+.hastag.darkMode {
+  background-color: #444444;
+}
+
+.hastagsWrapper {
+  align-items: center;
+  display: flex;
+  gap: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.deleteHastag button {
+  background: none;
+  border: none;
+  color: var(--black);
+  font-size: 1.2rem;
 }
