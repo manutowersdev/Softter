@@ -9,7 +9,14 @@
   padding: 0.625rem 1.25rem;
   position: sticky;
   top: 0;
+  transition-duration: 150ms;
   width: 100%;
+}
+
+.header.darkMode {
+  background: #161616;
+  color: var(--darkModeTextColor);
+  border-bottom: 1px solid var(--darkModeLines);
 }
 
 .h2 {
