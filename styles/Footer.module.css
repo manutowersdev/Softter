@@ -7,6 +7,13 @@
   height: 3.0725rem;
   position: fixed;
   width: 100%;
+  transition-duration: 150ms;
+}
+
+.footer.dark {
+  background: var(--darkModeBlack);
+  border-top: 1px solid var(--darkModeLines);
+  border-bottom: 1px solid var(--darkModeLines);
 }
 
 @media screen and (min-width: 520px) {
