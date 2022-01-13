@@ -4,19 +4,30 @@
   border: 1px solid var(--gray);
   cursor: pointer;
   height: 1.5rem;
+  left: -3px;
+  position: absolute;
+  transition-duration: 300ms;
   width: 1.5rem;
 }
 
 .buttonWrapper {
-  width: 3rem;
-  height: 1.5rem;
-  display: flex;
+  align-items: center;
   background-color: var(--gray);
-  margin-right: 0.9375rem;
-  border-radius: 39%;
+  border-radius: 100px;
   cursor: pointer;
+  display: flex;
+  height: 1rem;
+  margin-right: 0.9375rem;
+  position: relative;
+  transition-duration: 300ms;
+  width: 2.5rem;
 }
 
 .buttonWrapper.right {
-  justify-content: flex-end;
+  background-color: var(--lightBlue);
+}
+
+.button.right {
+  transform: translateX(90%);
+  background-color: var(--gray);
 }
