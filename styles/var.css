@@ -3,6 +3,10 @@
   --blue: #557a95;
   --lightBlue: #7395ae;
   --gray: #a3a3a3;
+  --lightGray: #cacaca;
   --black: #5d5c61;
   --mobile: 520px;
+  --darkModeLines: #3a3a3a;
+  --darkModeBlack: #161616;
+  --darkModeTextColor: rgb(212, 212, 212);
 }
