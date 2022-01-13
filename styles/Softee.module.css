@@ -2,11 +2,20 @@
   border-bottom: 2px solid #eee;
   display: flex;
   padding: 0.625rem 0.9375rem;
+  transition-duration: 150ms;
 }
 
 .Softee:hover {
   background: #f5f8fa;
   cursor: pointer;
+}
+
+.Softee.darkMode {
+  border-bottom: 2px solid var(--darkModeLines);
+}
+
+.Softee:hover.darkMode {
+  background: #191919;
 }
 
 .div {
@@ -15,16 +24,24 @@
 
 .p {
   line-height: 1.3125;
+  display: flex;
+  flex-direction: column;
+  gap: 0.325rem;
 }
 
 .date {
   color: #555;
   font-size: 0.875rem;
   cursor: pointer;
+  transition-duration: 150ms;
 }
 
 .date:hover {
   text-decoration: underline;
+}
+
+.date.darkMode {
+  color: rgb(102, 102, 102);
 }
 
 .softeeImg {
@@ -32,4 +49,26 @@
   height: auto;
   margin-top: 0.625rem;
   width: 50%;
+}
+
+.hastagsWrapper {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.hastag {
+  padding: 0.125rem 0.3125rem;
+  color: var(--blue);
+  font-weight: 600;
+  background-color: var(--lightGray);
+  border-radius: 2rem;
+  transition-duration: 150ms;
+}
+
+.hastag.darkMode {
+  background-color: #444444;
+}
+
+.hastag:hover {
+  background-color: var(--gray);
 }
