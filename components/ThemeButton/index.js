@@ -4,7 +4,6 @@ import styles from "styles/ThemeButton.module.css";
 
 export default function ThemeButton() {
   const { toggle, toggleTheme } = useContext(ThemeContext);
-  console.log("context", toggle);
 
   function handleClick(e) {
     e.preventDefault();
@@ -12,8 +11,17 @@ export default function ThemeButton() {
   }
 
   return (
-    <div onClick={handleClick} className={styles.buttonWrapper}>
-      <button className={styles.button}></button>
+    <div
+      onClick={handleClick}
+      className={
+        toggle
+          ? `${styles.buttonWrapper} ${styles.right}`
+          : styles.buttonWrapper
+      }
+    >
+      <button
+        className={toggle ? `${styles.button} ${styles.right}` : styles.button}
+      ></button>
     </div>
   );
 }

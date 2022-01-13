@@ -6,7 +6,6 @@ const ThemeProvider = ({ children }) => {
   const [toggle, setToggle] = useState(false);
   const toggleTheme = () => {
     setToggle(!toggle);
-    console.log("theme hook", toggle);
   };
 
   return (
