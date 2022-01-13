@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Softee from "components/Softee";
 import { getLatestSoftees } from "../../firebase/client";
 import useUser from "hooks/useUser";
@@ -6,9 +6,11 @@ import styles from "styles/HomePage.module.css";
 import Head from "next/head";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import { ThemeContext } from "hooks/themeContext";
 
 export default function HomePage() {
   const [Timeline, setTimeline] = useState([]);
+  const { toggle: darkMode } = useContext(ThemeContext);
   const user = useUser();
 
   useEffect(async () => {
@@ -24,11 +26,24 @@ export default function HomePage() {
         <title>Inicio / Softter</title>
       </Head>
       <Header location="Inicio" />
-      <section className={styles.section}>
+      <section
+        className={
+          darkMode ? `${styles.section} ${styles.darkMode}` : styles.section
+        }
+      >
         <div className={styles.softeesCont}>
           {Timeline &&
             Timeline.map(
-              ({ id, username, avatar, content, userId, createdAt, img }) => {
+              ({
+                id,
+                username,
+                avatar,
+                content,
+                userId,
+                createdAt,
+                img,
+                hastags,
+              }) => {
                 return (
                   <Softee
                     img={img}
@@ -39,6 +54,7 @@ export default function HomePage() {
                     content={content}
                     id={id}
                     userId={userId}
+                    hastags={hastags}
                   />
                 );
               }
