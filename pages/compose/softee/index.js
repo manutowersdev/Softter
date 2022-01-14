@@ -14,9 +14,9 @@ export default function ComposeSoftee() {
   const user = useUser();
   const { toggle: darkMode } = useContext(ThemeContext);
   const [Message, setMessage] = useState("");
-  const [hastagOne, setHastagOne] = useState(null);
-  const [hastagTwo, setHastagTwo] = useState(null);
-  const [hastagThree, setHastagThree] = useState(null);
+  const [hastagOne, setHastagOne] = useState("");
+  const [hastagTwo, setHastagTwo] = useState("");
+  const [hastagThree, setHastagThree] = useState("");
   const [HastagValue, setHastags] = useState([]);
   const [isTextAreaDisabled, setIsTextAreaDisabled] = useState(false);
 
@@ -74,11 +74,7 @@ export default function ComposeSoftee() {
 
   const handleChangeHastags = (e) => {
     const { value } = e.target;
-    if (value) {
-      setHastags(value);
-      // console.log(e);
-    }
-    console.log("value", value);
+    setHastags(value);
   };
 
   const handleKeyDown = (e) => {
@@ -111,6 +107,7 @@ export default function ComposeSoftee() {
         userId: user.userId,
         username: user.username,
         img: imgURL,
+        hastags: [hastagOne, hastagTwo, hastagThree],
       });
       if (response) {
         setStatus(COMPOSE_STATES.SUCCESS);
@@ -232,20 +229,23 @@ function Hastag({ content, setHastag }) {
 
 function HastagsTextArea({ onChange, onKeyDown, value, darkMode, disabled }) {
   return (
-    <input
-      disabled={disabled}
-      size={4}
-      maxLength={15}
-      placeholder="#hastags"
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      className={
-        darkMode
-          ? `${styles.hastagsArea} ${styles.darkMode}`
-          : styles.hastagsArea
-      }
-      value={value}
-    ></input>
+    <div className={styles.hastagsInputWrapper}>
+      <span className={styles.beforeInput}>#</span>
+      <input
+        disabled={disabled}
+        size={value.length > 0 ? value.length : 4}
+        maxLength={15}
+        placeholder="hastags"
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        className={
+          darkMode
+            ? `${styles.hastagsArea} ${styles.darkMode}`
+            : styles.hastagsArea
+        }
+        value={value}
+      />
+    </div>
   );
 }
 
@@ -259,16 +259,26 @@ function SoffteeTextArea({
   textAreaStyles,
 }) {
   return (
-    <textarea
-      onDragEnter={onDragEnter}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      onChange={onChange}
-      placeholder="¿Qué esta pasando?"
-      className={
-        darkMode ? `${textAreaStyles} ${styles.darkMode}` : textAreaStyles
-      }
-      value={value}
-    ></textarea>
+    <div className={styles.textAreaWrapper}>
+      <textarea
+        onDragEnter={onDragEnter}
+        onDragLeave={onDragLeave}
+        maxLength={150}
+        onDrop={onDrop}
+        onChange={onChange}
+        placeholder="¿Qué esta pasando?"
+        className={
+          darkMode ? `${textAreaStyles} ${styles.darkMode}` : textAreaStyles
+        }
+        value={value}
+      ></textarea>
+      <p
+        className={
+          darkMode ? `${styles.charCount} ${styles.darkMode}` : styles.charCount
+        }
+      >
+        {value.length ?? 0}/150
+      </p>
+    </div>
   );
 }
