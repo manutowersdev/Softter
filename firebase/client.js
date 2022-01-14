@@ -80,7 +80,14 @@ export const signOut = () => {
  * @param {} param
  * @returns
  */
-export async function addSoftee({ avatar, userId, content, username, img }) {
+export async function addSoftee({
+  avatar,
+  userId,
+  content,
+  username,
+  img,
+  hastags,
+}) {
   try {
     const newSoftee = await firebaseFirestore.addDoc(
       firebaseFirestore.collection(database, "softees"),
@@ -93,6 +100,7 @@ export async function addSoftee({ avatar, userId, content, username, img }) {
         likesCount: 0,
         sharedCount: 0,
         img,
+        hastags,
       }
     );
     return newSoftee;
