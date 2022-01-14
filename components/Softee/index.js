@@ -55,7 +55,7 @@ export default function Softee({
           {content}
           <div className={styles.hastagsWrapper}>
             {hastags
-              ?.filter((content) => content.length > 0)
+              ?.filter((content) => content?.length > 0)
               .map((content) => {
                 return (
                   <p
