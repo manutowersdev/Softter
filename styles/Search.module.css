@@ -1,8 +1,42 @@
-.body {
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   height: 100%;
+  padding-top: 0.625rem;
   transition-duration: 150ms;
 }
 
-.body.darkMode {
+.wrapper.darkMode {
   background-color: var(--darkModeBlack);
+}
+
+.inputPhrase {
+  cursor: pointer;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  transition-duration: 150ms;
+  user-select: none;
+}
+
+.inputPhrase.darkMode {
+  color: var(--darkModeTextColor);
+}
+
+.inputWrapper {
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--gray);
+  display: flex;
+  padding: 0rem 1.875rem 0px;
+}
+
+.inputWrapper svg {
+  stroke: lightgray;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
 }
