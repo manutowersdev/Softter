@@ -29,14 +29,28 @@
   border-radius: 999px;
   border: 1px solid var(--gray);
   display: flex;
-  padding: 0rem 1.875rem 0px;
+  padding: 0.3rem 1.875rem;
+  position: relative;
 }
 
 .inputWrapper svg {
+  left: 0.3125rem;
+  position: absolute;
   stroke: lightgray;
 }
 
 .searchInput {
   border: none;
   outline: none;
+}
+
+.hastagsWrapper {
+  display: flex;
+  gap: 0.625rem;
+  margin-top: 1rem;
+}
+
+.hastagsWrapper p {
+  user-select: none;
+  cursor: pointer;
 }
