@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import Avatar from "components/Avatar";
-import styles from "styles/Softee.module.css";
-import useTimeAgo from "hooks/useTimeAgo";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { formatDate } from "hooks/helpers";
-import { ThemeContext } from "hooks/themeContext";
+import React, { useContext } from "react"
+import Avatar from "components/Avatar"
+import styles from "styles/Softee.module.css"
+import useTimeAgo from "hooks/useTimeAgo"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { formatDate } from "hooks/helpers"
+import { ThemeContext } from "hooks/themeContext"
+import Hastag from "components/Hastag"
 
 export default function Softee({
   avatar,
@@ -17,15 +18,15 @@ export default function Softee({
   img,
   hastags,
 }) {
-  const router = useRouter();
-  const timeago = useTimeAgo(createdAt);
-  const titleTime = formatDate(createdAt);
-  const { toggle: darkMode } = useContext(ThemeContext);
+  const router = useRouter()
+  const timeago = useTimeAgo(createdAt)
+  const titleTime = formatDate(createdAt)
+  const { toggle: darkMode } = useContext(ThemeContext)
 
   const handleArticleClick = (e) => {
-    e.preventDefault();
-    router.push(`/status/${id}`);
-  };
+    e.preventDefault()
+    router.push(`/status/${id}`)
+  }
 
   return (
     <article
@@ -58,22 +59,18 @@ export default function Softee({
               ?.filter((content) => content?.length > 0)
               .map((content) => {
                 return (
-                  <p
+                  <Hastag
                     key={`${content}${id}`}
-                    className={
-                      darkMode
-                        ? `${styles.hastag} ${styles.darkMode}`
-                        : styles.hastag
-                    }
-                  >
-                    #{content}
-                  </p>
-                );
+                    content={content}
+                    id={id}
+                    darkMode={darkMode}
+                  />
+                )
               })}
           </div>
         </p>
         {img && <img src={img} className={styles.softeeImg} />}
       </section>
     </article>
-  );
+  )
 }

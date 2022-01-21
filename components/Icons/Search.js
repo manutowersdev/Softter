@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 export default function Search(props) {
   return (
@@ -13,5 +13,5 @@ export default function Search(props) {
         <path d="M17.571 17.5 12 12" />
       </g>
     </svg>
-  );
+  )
 }
