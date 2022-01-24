@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 export default function Create(props) {
   return (
@@ -13,5 +13,5 @@ export default function Create(props) {
         <path d="M17.5 3.467a1.462 1.462 0 0 1-.017 2.05L10.5 12.5l-3 1 1-3 6.987-7.046a1.409 1.409 0 0 1 1.885-.104zM15.5 5.5l.953 1" />
       </g>
     </svg>
-  );
+  )
 }

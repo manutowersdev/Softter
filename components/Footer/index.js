@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import Link from "next/link";
-import Home from "components/Icons/Home";
-import Search from "components/Icons/Search";
-import Create from "components/Icons/Create";
-import styles from "styles/Footer.module.css";
-import { ThemeContext } from "../../hooks/themeContext";
+import React, { useContext } from "react"
+import Link from "next/link"
+import Home from "components/Icons/Home"
+import Search from "components/Icons/Search"
+import Create from "components/Icons/Create"
+import styles from "styles/Footer.module.css"
+import { ThemeContext } from "../../hooks/themeContext"
 
 export default function Footer() {
-  const { toggle: darkMode } = useContext(ThemeContext);
+  const { toggle: darkMode } = useContext(ThemeContext)
 
   return (
     <nav
@@ -29,5 +29,5 @@ export default function Footer() {
         </a>
       </Link>
     </nav>
-  );
+  )
 }

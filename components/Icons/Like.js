@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 export default function SvgComponent(props) {
   return (
@@ -14,5 +14,5 @@ export default function SvgComponent(props) {
         <path d="M3.5 7.5h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z" />
       </g>
     </svg>
-  );
+  )
 }

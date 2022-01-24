@@ -1,6 +1,6 @@
-import "styles/globals.css";
-import AppLayout from "components/AppLayout";
-import { ThemeProvider } from "../hooks/themeContext";
+import "styles/globals.css"
+import AppLayout from "components/AppLayout"
+import { ThemeProvider } from "../hooks/themeContext"
 
 export default function App({ Component, pageProps }) {
   return (
@@ -11,5 +11,5 @@ export default function App({ Component, pageProps }) {
         </AppLayout>
       </ThemeProvider>
     </main>
-  );
+  )
 }

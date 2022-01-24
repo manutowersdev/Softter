@@ -1,28 +1,28 @@
-import React, { useContext, useEffect } from "react";
-import styles from "styles/Header.module.css";
-import useUser from "hooks/useUser";
-import Avatar from "components/Avatar";
-import Back from "components/Back";
-import { signOut } from "../../firebase/client";
-import Button from "components/Button";
-import ThemeButton from "components/ThemeButton";
-import { ThemeContext } from "hooks/themeContext";
+import React, { useContext, useEffect } from "react"
+import styles from "styles/Header.module.css"
+import useUser from "hooks/useUser"
+import Avatar from "components/Avatar"
+import Back from "components/Back"
+import { signOut } from "../../firebase/client"
+import Button from "components/Button"
+import ThemeButton from "components/ThemeButton"
+import { ThemeContext } from "hooks/themeContext"
 
 export default function Header({ location }) {
-  const user = useUser();
-  const { toggle: darkMode } = useContext(ThemeContext);
+  const user = useUser()
+  const { toggle: darkMode } = useContext(ThemeContext)
 
   function handleClick() {
-    signOut();
+    signOut()
   }
 
   useEffect(() => {
     if (darkMode) {
-      document.querySelector("body").classList.add("darkMode");
+      document.querySelector("body").classList.add("darkMode")
     } else {
-      document.querySelector("body").classList.remove("darkMode");
+      document.querySelector("body").classList.remove("darkMode")
     }
-  }, [darkMode]);
+  }, [darkMode])
 
   return (
     <header
@@ -38,5 +38,5 @@ export default function Header({ location }) {
         Salir
       </Button>
     </header>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import * as firebaseApp from "firebase/app";
-import * as firebaseStorage from "firebase/storage";
-import * as firebaseFirestore from "firebase/firestore";
-import * as firebaseAuth from "firebase/auth";
+import * as firebaseApp from "firebase/app"
+import * as firebaseStorage from "firebase/storage"
+import * as firebaseFirestore from "firebase/firestore"
+import * as firebaseAuth from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA98rKROBeCDKd4fJb3J1BkhCoEtVcHKaY",
@@ -11,15 +11,15 @@ const firebaseConfig = {
   messagingSenderId: "1024657791976",
   appId: "1:1024657791976:web:eaf2bf5d4c6e130609a25d",
   measurementId: "G-0XZ0KQT4VY",
-};
+}
 
-let app;
+let app
 
 if (!app) {
-  app = firebaseApp.initializeApp(firebaseConfig);
+  app = firebaseApp.initializeApp(firebaseConfig)
 }
-const database = firebaseFirestore.getFirestore(app);
-const storageInstance = firebaseStorage.getStorage(app);
+const database = firebaseFirestore.getFirestore(app)
+const storageInstance = firebaseStorage.getStorage(app)
 /**
  *
  * @param {*} user
@@ -34,7 +34,7 @@ const mapUserFromFirebaseAuth = (user) => {
       displayName,
       reloadUserInfo: { screenName },
       uid,
-    } = user;
+    } = user
     return {
       avatar: photoURL,
       name: displayName,
@@ -42,39 +42,39 @@ const mapUserFromFirebaseAuth = (user) => {
       email: email,
       token: accessToken,
       userId: uid,
-    };
+    }
   } else {
-    return null;
+    return null
   }
-};
+}
 /**
  *
  * @param {*} onChange
  * @returns
  */
 export function onAuthStateChangedFunction(onChange) {
-  const auth = firebaseAuth.getAuth();
+  const auth = firebaseAuth.getAuth()
   return firebaseAuth.onAuthStateChanged(auth, (data) => {
-    const normalizedUser = mapUserFromFirebaseAuth(data);
-    onChange(normalizedUser);
-  });
+    const normalizedUser = mapUserFromFirebaseAuth(data)
+    onChange(normalizedUser)
+  })
 }
 /**
  *
  * @returns FirebaseAuth Log In
  */
 export const loginWithGitHub = () => {
-  const auth = firebaseAuth.getAuth();
-  const githubProvider = new firebaseAuth.GithubAuthProvider();
-  return firebaseAuth.signInWithPopup(auth, githubProvider);
-};
+  const auth = firebaseAuth.getAuth()
+  const githubProvider = new firebaseAuth.GithubAuthProvider()
+  return firebaseAuth.signInWithPopup(auth, githubProvider)
+}
 /**
  *
  * @returns Sign out
  */
 export const signOut = () => {
-  return firebaseAuth.getAuth().signOut();
-};
+  return firebaseAuth.getAuth().signOut()
+}
 /**
  *
  * @param {} param
@@ -102,10 +102,10 @@ export async function addSoftee({
         img,
         hastags,
       }
-    );
-    return newSoftee;
+    )
+    return newSoftee
   } catch (error) {
-    console.error("Error writing that Softee 😢:", error);
+    console.error("Error writing that Softee 😢:", error)
   }
 }
 /**
@@ -117,18 +117,18 @@ export async function listenLatestSoftees(callback) {
     const sortedSoftees = await firebaseFirestore.query(
       firebaseFirestore.collection(database, "softees"),
       firebaseFirestore.orderBy("createdAt", "desc")
-    );
+    )
 
-    const documents = [];
+    const documents = []
     await firebaseFirestore.onSnapshot(sortedSoftees, (querySnapshot) => {
       querySnapshot.docs.map((doc) => {
-        return documents.push(mapSofteeFromFirebaseToSofteeObject(doc));
-      });
-    });
-    console.log("docs", documents);
-    await callback(documents);
+        return documents.push(mapSofteeFromFirebaseToSofteeObject(doc))
+      })
+    })
+    console.log("docs", documents)
+    await callback(documents)
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 /**
@@ -137,15 +137,15 @@ export async function listenLatestSoftees(callback) {
  * @returns
  */
 const mapSofteeFromFirebaseToSofteeObject = (doc) => {
-  const data = doc.data();
-  const id = doc.id;
-  const { createdAt } = data;
+  const data = doc.data()
+  const id = doc.id
+  const { createdAt } = data
   return {
     ...data,
     id,
     createdAt: +createdAt.toDate(),
-  };
-};
+  }
+}
 /**
  *
  * @returns
@@ -155,18 +155,18 @@ export async function getLatestSoftees() {
     const sortedSoftees = firebaseFirestore.query(
       firebaseFirestore.collection(database, "softees"),
       firebaseFirestore.orderBy("createdAt", "desc")
-    );
-    const { docs } = await firebaseFirestore.getDocs(sortedSoftees);
-    const softees = docs.map(mapSofteeFromFirebaseToSofteeObject);
-    return softees;
+    )
+    const { docs } = await firebaseFirestore.getDocs(sortedSoftees)
+    const softees = docs.map(mapSofteeFromFirebaseToSofteeObject)
+    return softees
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
 export async function uploadImage(file) {
-  const ref = firebaseStorage.ref(storageInstance, `images/${file.name}`);
-  const { task } = await firebaseStorage.uploadBytesResumable(ref, file);
-  const url = await firebaseStorage.getDownloadURL(ref);
-  return { task: task, url };
+  const ref = firebaseStorage.ref(storageInstance, `images/${file.name}`)
+  const { task } = await firebaseStorage.uploadBytesResumable(ref, file)
+  const url = await firebaseStorage.getDownloadURL(ref)
+  return { task: task, url }
 }

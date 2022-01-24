@@ -52,7 +52,7 @@ export default function Softee({
             {timeago}
           </time>
         </Link>
-        <p className={styles.p}>
+        <div className={styles.p}>
           {content}
           <div className={styles.hastagsWrapper}>
             {hastags
@@ -68,7 +68,7 @@ export default function Softee({
                 )
               })}
           </div>
-        </p>
+        </div>
         {img && <img src={img} className={styles.softeeImg} />}
       </section>
     </article>

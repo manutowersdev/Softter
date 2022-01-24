@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../hooks/themeContext";
-import styles from "styles/ThemeButton.module.css";
+import React, { useContext } from "react"
+import { ThemeContext } from "../../hooks/themeContext"
+import styles from "styles/ThemeButton.module.css"
 
 export default function ThemeButton() {
-  const { toggle, toggleTheme } = useContext(ThemeContext);
+  const { toggle, toggleTheme } = useContext(ThemeContext)
 
   function handleClick(e) {
-    e.preventDefault();
-    toggleTheme(!toggle);
+    e.preventDefault()
+    toggleTheme(!toggle)
   }
 
   return (
@@ -21,7 +21,7 @@ export default function ThemeButton() {
     >
       <button
         className={toggle ? `${styles.button} ${styles.right}` : styles.button}
-      ></button>
+      />
     </div>
-  );
+  )
 }

@@ -8,41 +8,92 @@ import Hastag from "components/Hastag"
 import { useRouter } from "next/router"
 
 export default function SearchPage() {
-  const { query } = useRouter()
-  const [SearchParams, setSearchParams] = useState([])
+  const { query, push } = useRouter()
+  const [SearchParams, setSearchParams] = useState({})
   const { toggle: darkMode } = useContext(ThemeContext)
   const searchInput = useRef()
 
   useEffect(() => {
-    if (query.t1 && !SearchParams.includes(query.t1)) {
-      setSearchParams([...SearchParams, query.t1])
+    const queryArray = Object.values(SearchParams)
+
+    if (query.t1 && !queryArray.includes(query.t1)) {
+      setSearchParams({ ...SearchParams, t1: query.t1 })
     }
 
-    if (query.t2 && !SearchParams.includes(query.t2)) {
-      setSearchParams([...SearchParams, query.t2])
+    if (query.t2 && !queryArray.includes(query.t2)) {
+      setSearchParams({ ...SearchParams, t2: query.t2 })
     }
-    if (query.t3 && !SearchParams.includes(query.t3)) {
-      setSearchParams([...SearchParams, query.t3])
+
+    if (query.t3 && !queryArray.includes(query.t2)) {
+      setSearchParams({ ...SearchParams, t3: query.t3 })
     }
   }, [query])
 
   useEffect(() => {
     const params = Object.values(query)
-    setSearchParams(params)
+    console.log("QUERY2", query)
+    if (params.length === 3) {
+      console.log("TLE")
+      setSearchParams({
+        t1: params[0],
+        t2: params[1],
+        t3: params[2],
+      })
+    } else if (params.length === 2) {
+      console.log("DOS")
+      setSearchParams({
+        t1: params[0],
+        t2: params[1],
+      })
+    } else if (params.length === 1) {
+      console.log("UNO")
+      setSearchParams({
+        t1: params[0],
+      })
+    }
   }, [])
+
+  useEffect(() => {
+    push(
+      {
+        pathname: "/search",
+        query: SearchParams,
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    )
+  }, [SearchParams])
 
   function handleTitleClick(e) {
     searchInput.current.focus()
   }
 
   function handleHastagClick(queryParam) {
-    const newParams = SearchParams.filter((param) => param !== queryParam)
-    setSearchParams(newParams)
-    // eliminar queryparam
+    if (Object.values(SearchParams).length === 3) {
+      const newParams = Object.values(SearchParams).filter(
+        (param) => param !== queryParam
+      )
+      setSearchParams({
+        t1: newParams[0],
+        t2: newParams[1],
+      })
+    } else if (Object.values(SearchParams).length === 2) {
+      const newParams = Object.values(SearchParams).filter(
+        (param) => param !== queryParam
+      )
+      setSearchParams({
+        t1: newParams[0],
+      })
+    } else {
+      setSearchParams({})
+    }
   }
 
   function handleAddParam(param) {
     console.log(param)
+
     // añadir queryparam
   }
 
@@ -77,17 +128,18 @@ export default function SearchPage() {
           />
         </div>
         <div className={styles.hastagsWrapper}>
-          {SearchParams.length ? (
-            SearchParams.map((param, index) => {
+          {SearchParams ? (
+            Object.values(SearchParams).map((param, index) => {
               return (
-                <div
+                <Hastag
                   key={`${param}${index}`}
                   onClick={() => {
                     handleHastagClick(param)
                   }}
-                >
-                  <Hastag content={param} id={index} darkMode={darkMode} />
-                </div>
+                  content={param}
+                  id={index}
+                  darkMode={darkMode}
+                />
               )
             })
           ) : (
@@ -125,3 +177,5 @@ export default function SearchPage() {
     </>
   )
 }
+
+// export function getServerSideProps() {}

@@ -1,17 +1,17 @@
-const admin = require("firebase-admin");
+const admin = require("firebase-admin")
 
-const serviceAccount = require("./firebase-keys.json");
-let app;
+const serviceAccount = require("./firebase-keys.json")
+let app
 if (admin.apps.length < 1) {
   app = admin.initializeApp(
     {
       credential: admin.credential.cert(serviceAccount),
     },
     "adminApp"
-  );
+  )
 } else {
-  console.log("Creating new APP");
-  app = admin.app("adminApp");
+  console.log("Creating new APP")
+  app = admin.app("adminApp")
 }
 
-export const firestore = admin.firestore(app);
+export const firestore = admin.firestore(app)

@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "styles/Back.module.css";
-import { useRouter } from "next/router";
+import React from "react"
+import styles from "styles/Back.module.css"
+import { useRouter } from "next/router"
 
 export default function Back(props) {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <svg
@@ -23,5 +23,5 @@ export default function Back(props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
