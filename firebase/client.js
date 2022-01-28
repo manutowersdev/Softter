@@ -2,6 +2,7 @@ import * as firebaseApp from "firebase/app"
 import * as firebaseStorage from "firebase/storage"
 import * as firebaseFirestore from "firebase/firestore"
 import * as firebaseAuth from "firebase/auth"
+// import { firestore as adminFirestore } from "./admin"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA98rKROBeCDKd4fJb3J1BkhCoEtVcHKaY",
@@ -54,10 +55,17 @@ const mapUserFromFirebaseAuth = (user) => {
  */
 export function onAuthStateChangedFunction(onChange) {
   const auth = firebaseAuth.getAuth()
-  return firebaseAuth.onAuthStateChanged(auth, (data) => {
-    const normalizedUser = mapUserFromFirebaseAuth(data)
-    onChange(normalizedUser)
-  })
+  return firebaseAuth.onAuthStateChanged(
+    auth,
+    (data) => {
+      return firebaseAuth.onAuthStateChanged(auth, (data) => {
+        const normalizedUser = mapUserFromFirebaseAuth(data)
+        onChange(normalizedUser)
+      })
+    },
+    (error) => console.error(error),
+    (complete) => {}
+  )
 }
 /**
  *
@@ -169,4 +177,31 @@ export async function uploadImage(file) {
   const { task } = await firebaseStorage.uploadBytesResumable(ref, file)
   const url = await firebaseStorage.getDownloadURL(ref)
   return { task: task, url }
+}
+
+export async function getFilteredSoftees(query) {
+  try {
+    if (Object.values(query).length < 1) {
+      console.log("No hay query")
+      return {}
+    }
+    // const sortedSoftees = firebaseFirestore.query(
+    //   firebaseFirestore.collection(database, "softees"),
+    //   firebaseFirestore.where(
+    //     "hastags",
+    //     "array-contains-any",
+    //     Object.values(query)
+    //   ),
+    //   firebaseFirestore.orderBy("createdAt", "desc")
+    // )
+    const sortedSoftees = firebaseFirestore.query(
+      firebaseFirestore.collection(database, "softees"),
+      firebaseFirestore.orderBy("createdAt", "desc")
+    )
+    const { docs } = await firebaseFirestore.getDocs(sortedSoftees)
+    const softees = docs.map(mapSofteeFromFirebaseToSofteeObject)
+    return softees
+  } catch (error) {
+    console.error(error)
+  }
 }

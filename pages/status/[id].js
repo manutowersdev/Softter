@@ -27,7 +27,7 @@ export default function SofteePage({ data }) {
 export async function getServerSideProps(context) {
   const { params } = context
   const { id } = params
-  const res = await fetch(`http://192.168.5.130:3000/api/softees/${id}`)
+  const res = await fetch(`http://192.168.5.139:3000/api/softees/${id}`)
 
   if (res.statusText !== "OK") {
     throw new Error("Error fetching the softee data.")
@@ -50,7 +50,7 @@ export async function getServerSideProps(context) {
 // export async function getStaticProps(context) {
 //   const { params } = context;
 //   const { id } = params;
-//   const res = await fetch(`http://192.168.5.130:3000/api/softees/${id}`);
+//   const res = await fetch(`http://192.168.5.139:3000/api/softees/${id}`);
 
 //   if (res.statusText !== 'OK') {
 //     throw new Error('Error fetching the softee data.');
