@@ -17,6 +17,8 @@ export default function Softee({
   userId,
   img,
   hastags,
+  onClick,
+  onHastagClick,
 }) {
   const router = useRouter()
   const timeago = useTimeAgo(createdAt)
@@ -30,7 +32,7 @@ export default function Softee({
 
   return (
     <article
-      onClick={handleArticleClick}
+      onClick={onClick ? handleArticleClick : null}
       className={
         darkMode ? `${styles.Softee} ${styles.darkMode}` : styles.Softee
       }
@@ -42,7 +44,18 @@ export default function Softee({
       <section>
         <strong className={styles.username}>{username}</strong>
         <span> · </span>
-        <Link href={`/status/${id}`}>
+        {onClick ? (
+          <Link href={`/status/${id}`}>
+            <time
+              className={
+                darkMode ? `${styles.date} ${styles.darkMode}` : styles.date
+              }
+              title={titleTime}
+            >
+              {timeago}
+            </time>
+          </Link>
+        ) : (
           <time
             className={
               darkMode ? `${styles.date} ${styles.darkMode}` : styles.date
@@ -51,7 +64,7 @@ export default function Softee({
           >
             {timeago}
           </time>
-        </Link>
+        )}
         <div className={styles.p}>
           {content}
           <div className={styles.hastagsWrapper}>
@@ -64,6 +77,7 @@ export default function Softee({
                     content={content}
                     id={id}
                     darkMode={darkMode}
+                    onClick={onHastagClick}
                   />
                 )
               })}

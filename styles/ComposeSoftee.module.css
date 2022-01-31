@@ -149,5 +149,23 @@
   background: none;
   border: none;
   color: var(--black);
+  cursor: pointer;
   font-size: 1.2rem;
 }
+
+.imageIcon {
+  cursor: pointer;
+}
+
+.imageIcon:hover {
+  cursor: pointer;
+  color: #444444;
+  transition: 150ms;
+}
+
+.imageIcon.darkMode {
+  color: var(--lightGray);
+}
+
+/* .imageIcon.darkMode:hover {
+} */

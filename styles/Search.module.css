@@ -3,9 +3,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100%;
+  min-height: 19%;
   padding-top: 0.625rem;
   transition-duration: 150ms;
+  border-bottom: 2px solid var(--gray);
 }
 
 .wrapper.darkMode {
@@ -41,16 +42,41 @@
 
 .searchInput {
   border: none;
+  font-size: 1.125rem;
+  height: 1.875rem;
   outline: none;
+  transition: 150ms;
+  width: 18.75rem;
+}
+
+.searchInput.darkMode {
+  background: var(--darkModeBlack);
+  color: var(--darkModeTextColor);
 }
 
 .hastagsWrapper {
   display: flex;
   gap: 0.625rem;
   margin-top: 1rem;
+  transition: 150ms;
+}
+
+.hastagsWrapper.darkMode {
+  background: var(--darkModeBlack);
+  color: var(--darkModeTextColor);
 }
 
 .hastagsWrapper p {
   user-select: none;
   cursor: pointer;
+}
+
+.softeesWrapper {
+  height: 100%;
+  transition: 150ms;
+}
+
+.softeesWrapper.darkMode {
+  background: var(--darkModeBlack);
+  color: var(--darkModeTextColor);
 }

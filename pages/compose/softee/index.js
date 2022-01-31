@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import Button from "components/Button"
 import useUser from "hooks/useUser"
 import styles from "styles/ComposeSoftee.module.css"
@@ -9,8 +9,10 @@ import Avatar from "components/Avatar"
 import Header from "components/Header"
 import Footer from "components/Footer"
 import { ThemeContext } from "hooks/themeContext"
+import ImageIcon from "components/Icons/ImageIcon"
 
 export default function ComposeSoftee() {
+  const inputFileRef = useRef()
   const user = useUser()
   const { toggle: darkMode } = useContext(ThemeContext)
   const [Message, setMessage] = useState("")
@@ -69,12 +71,12 @@ export default function ComposeSoftee() {
 
   const handleChange = (event) => {
     const { value } = event.target
-    setMessage(value)
+    setMessage(value.toLowerCase())
   }
 
   const handleChangeHastags = (e) => {
     const { value } = e.target
-    setHastags(value)
+    setHastags(value.toLowerCase())
   }
 
   const handleKeyDown = (e) => {
@@ -82,17 +84,17 @@ export default function ComposeSoftee() {
       if (!hastagOne) {
         console.log("Writing H1")
         setHastags("")
-        return setHastagOne(HastagValue)
+        return setHastagOne(HastagValue.toLowerCase())
       }
       if (!hastagTwo) {
         console.log("Writing H2")
         setHastags("")
-        return setHastagTwo(HastagValue)
+        return setHastagTwo(HastagValue.toLowerCase())
       }
       if (!hastagThree) {
         console.log("Writing H3")
         setHastags("")
-        return setHastagThree(HastagValue)
+        return setHastagThree(HastagValue.toLowerCase())
       }
     }
   }
@@ -107,7 +109,11 @@ export default function ComposeSoftee() {
         userId: user.userId,
         username: user.username,
         img: imgURL,
-        hastags: [hastagOne, hastagTwo, hastagThree],
+        hastags: [
+          hastagOne.toLowerCase(),
+          hastagTwo.toLowerCase(),
+          hastagThree.toLowerCase(),
+        ],
       })
       if (response) {
         setStatus(COMPOSE_STATES.SUCCESS)
@@ -151,7 +157,7 @@ export default function ComposeSoftee() {
       <Head>
         <title>Crear un Softee / Softter</title>
       </Head>
-      <Header location="Post softee" />
+      <Header location="Publicar softee" />
       <section
         className={
           darkMode
@@ -174,6 +180,19 @@ export default function ComposeSoftee() {
             value={Message}
             textAreaStyles={textAreaStyles}
           />
+          {!imgURL && (
+            <>
+              <input type={"file"} hidden={true} ref={inputFileRef} />
+              <ImageIcon
+                onClick={() => {
+                  console.log(inputFileRef)
+                }}
+                width={30}
+                height={30}
+                className={styles.imageIcon}
+              />
+            </>
+          )}
           <div className={styles.hastagsWrapper}>
             <HastagsTextArea
               onChange={handleChangeHastags}
@@ -211,14 +230,15 @@ export default function ComposeSoftee() {
   )
 }
 
-function Hastag({ content, setHastag }) {
+function Hastag({ content, setHastag, inputRef }) {
   function handleClick() {
     setHastag(null)
   }
   return (
     <>
       <p onClick={handleClick} className={styles.hastag}>
-        #{content}
+        <span onClick={inputRef.current.focus}>#</span>
+        {content}
         <span className={styles.deleteHastag}>
           <button>x</button>
         </span>

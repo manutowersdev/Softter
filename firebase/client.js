@@ -178,30 +178,3 @@ export async function uploadImage(file) {
   const url = await firebaseStorage.getDownloadURL(ref)
   return { task: task, url }
 }
-
-export async function getFilteredSoftees(query) {
-  try {
-    if (Object.values(query).length < 1) {
-      console.log("No hay query")
-      return {}
-    }
-    // const sortedSoftees = firebaseFirestore.query(
-    //   firebaseFirestore.collection(database, "softees"),
-    //   firebaseFirestore.where(
-    //     "hastags",
-    //     "array-contains-any",
-    //     Object.values(query)
-    //   ),
-    //   firebaseFirestore.orderBy("createdAt", "desc")
-    // )
-    const sortedSoftees = firebaseFirestore.query(
-      firebaseFirestore.collection(database, "softees"),
-      firebaseFirestore.orderBy("createdAt", "desc")
-    )
-    const { docs } = await firebaseFirestore.getDocs(sortedSoftees)
-    const softees = docs.map(mapSofteeFromFirebaseToSofteeObject)
-    return softees
-  } catch (error) {
-    console.error(error)
-  }
-}

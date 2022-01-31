@@ -7,6 +7,7 @@ import Head from "next/head"
 import Header from "components/Header"
 import Footer from "components/Footer"
 import { ThemeContext } from "hooks/themeContext"
+import router from "next/router"
 
 export default function HomePage() {
   const [Timeline, setTimeline] = useState([])
@@ -19,6 +20,10 @@ export default function HomePage() {
       setTimeline(softees)
     }
   }, [user])
+
+  function handleHastagClick(content) {
+    router.push("http://192.168.5.139:3000/search?t1=" + content)
+  }
 
   return (
     <>
@@ -55,6 +60,8 @@ export default function HomePage() {
                     id={id}
                     userId={userId}
                     hastags={hastags}
+                    onClick={true}
+                    onHastagClick={handleHastagClick}
                   />
                 )
               }
