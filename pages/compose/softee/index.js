@@ -149,6 +149,15 @@ export default function ComposeSoftee() {
     }
   }
 
+  const handleOnChangeImgInput = async (e) => {
+    e.preventDefault()
+    console.log(e)
+    if (e.files[0] && e.files.type.includes("image")) {
+      const { task, url } = await uploadImage(e.dataTransfer.files[0])
+      setTask({ task, url })
+    }
+  }
+
   const textAreaStyles = `${styles.textarea}
   ${Drag === DRAG_IMAGE_STATES.DRAG_OVER && styles.textareaDraggedIn}`
 
@@ -182,10 +191,18 @@ export default function ComposeSoftee() {
           />
           {!imgURL && (
             <>
-              <input type={"file"} hidden={true} ref={inputFileRef} />
+              <input
+                onChange={(e) => {
+                  console.log("onChange")
+                  handleOnChangeImgInput(e)
+                }}
+                type={"file"}
+                hidden={true}
+                ref={inputFileRef}
+              />
               <ImageIcon
                 onClick={() => {
-                  console.log(inputFileRef)
+                  inputFileRef.current.click()
                 }}
                 width={30}
                 height={30}
