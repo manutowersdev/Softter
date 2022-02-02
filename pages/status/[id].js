@@ -11,7 +11,7 @@ export default function SofteePage({ data }) {
   const { toggle: darkMode } = useContext(ThemeContext)
 
   function handleHastagClick(content) {
-    router.push("http://localhost:3000/search?t1=" + content)
+    router.push("https://softter.vercel.app/search?t1=" + content)
   }
 
   return (
@@ -33,7 +33,7 @@ export default function SofteePage({ data }) {
 export async function getServerSideProps(context) {
   const { params } = context
   const { id } = params
-  const res = await fetch(`http://localhost:3000/api/softees/${id}`)
+  const res = await fetch(`https://softter.vercel.app/api/softees/${id}`)
 
   if (res.statusText !== "OK") {
     throw new Error("Error fetching the softee data.")

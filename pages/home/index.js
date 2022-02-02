@@ -22,7 +22,7 @@ export default function HomePage() {
   }, [user])
 
   function handleHastagClick(content) {
-    router.push("http://localhost:3000/search?t1=" + content)
+    router.push("https://softter.vercel.app/search?t1=" + content)
   }
 
   return (

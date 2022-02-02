@@ -306,7 +306,7 @@ export async function getServerSideProps({ query }) {
     const queryString = Object.keys(query).reduce(reducer, "")
 
     const res = await fetch(
-      `http://localhost:3000/api/filterSoftees?${queryString}`
+      `https://softter.vercel.app/api/filterSoftees?${queryString}`
     )
     if (res.statusText !== "OK") {
       throw new Error("Error fetching the softee data.")
