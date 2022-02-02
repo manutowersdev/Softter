@@ -318,6 +318,7 @@ export async function getServerSideProps({ query }) {
 
     // const softees = await getLatestSoftees()
   } catch (error) {
-    console.error(error)
+    console.error("Ha habido un error con el fetch.")
+    return { props: [] }
   }
 }
