@@ -1,11 +1,11 @@
 const admin = require("firebase-admin")
-const serviceAccount2 = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
 console.log("HOLA VERCEL", process.env.hola)
 let app
 if (admin.apps.length < 1) {
   app = admin.initializeApp(
     {
-      credential: admin.credential.cert(serviceAccount2),
+      credential: admin.credential.cert(serviceAccount),
     },
     "adminApp"
   )
