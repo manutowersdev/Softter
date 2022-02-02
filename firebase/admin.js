@@ -10,7 +10,6 @@ if (admin.apps.length < 1) {
     "adminApp"
   )
 } else {
-  console.log("Creating new APP")
   app = admin.app("adminApp")
 }
 

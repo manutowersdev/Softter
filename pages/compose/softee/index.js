@@ -45,16 +45,13 @@ export default function ComposeSoftee() {
   useEffect(() => {
     if (Task) {
       const { task, url } = Task
-      const onProgress = (progress) => {
-        console.log(progress)
-      }
+      const onProgress = () => {}
 
       const onError = (err) => {
-        console.log(err)
+        console.error(err)
       }
 
-      const onComplete = async (complete) => {
-        console.log(complete)
+      const onComplete = async () => {
         setImgURL(url)
       }
       task.on("state_changed", onProgress, onError, onComplete)
@@ -82,17 +79,14 @@ export default function ComposeSoftee() {
   const handleKeyDown = (e) => {
     if (e.keyCode === 32) {
       if (!hastagOne) {
-        console.log("Writing H1")
         setHastags("")
         return setHastagOne(HastagValue.toLowerCase())
       }
       if (!hastagTwo) {
-        console.log("Writing H2")
         setHastags("")
         return setHastagTwo(HastagValue.toLowerCase())
       }
       if (!hastagThree) {
-        console.log("Writing H3")
         setHastags("")
         return setHastagThree(HastagValue.toLowerCase())
       }
@@ -151,9 +145,8 @@ export default function ComposeSoftee() {
 
   const handleOnChangeImgInput = async (e) => {
     e.preventDefault()
-    console.log(e)
-    if (e.files[0] && e.files.type.includes("image")) {
-      const { task, url } = await uploadImage(e.dataTransfer.files[0])
+    if (e.target.files[0] && e.target.files[0].type.includes("image")) {
+      const { task, url } = await uploadImage(e.target.files[0])
       setTask({ task, url })
     }
   }
@@ -193,7 +186,6 @@ export default function ComposeSoftee() {
             <>
               <input
                 onChange={(e) => {
-                  console.log("onChange")
                   handleOnChangeImgInput(e)
                 }}
                 type={"file"}
@@ -239,7 +231,7 @@ export default function ComposeSoftee() {
               <img className={styles.uploadedImg} src={imgURL} />
             </section>
           )}
-          <Button disabled={isDisabled}>Softeet</Button>
+          <Button disabled={isDisabled}>Enviar</Button>
         </form>
       </section>
       <Footer />

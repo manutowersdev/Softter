@@ -116,6 +116,7 @@ export async function addSoftee({
     console.error("Error writing that Softee 😢:", error)
   }
 }
+
 /**
  *
  * @param {*} callback
@@ -133,7 +134,6 @@ export async function listenLatestSoftees(callback) {
         return documents.push(mapSofteeFromFirebaseToSofteeObject(doc))
       })
     })
-    console.log("docs", documents)
     await callback(documents)
   } catch (error) {
     console.error(error)

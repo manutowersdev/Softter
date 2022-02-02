@@ -49,9 +49,8 @@ export default function SearchPage({ softees }) {
         t1: params[0].toLowerCase(),
       })
     }
-    // refreshData()
-    console.log("softees", softees)
   }, [])
+
   // Effect for setting search params to URL
   useEffect(() => {
     push(
@@ -289,7 +288,6 @@ export default function SearchPage({ softees }) {
 export async function getServerSideProps({ query }) {
   try {
     if (Object.values(query).length === 0) {
-      console.log("No queries")
       return {
         props: {},
       }
@@ -317,7 +315,6 @@ export async function getServerSideProps({ query }) {
 
     const softees = await res.json()
 
-    console.log("ssr softees", softees)
     return { props: softees }
 
     // const softees = await getLatestSoftees()

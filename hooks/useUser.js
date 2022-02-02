@@ -12,7 +12,6 @@ export default function useUser() {
 
   useEffect(() => {
     onAuthStateChangedFunction(setUser)
-    console.log("Usuario logueado.")
   }, [])
 
   useEffect(() => {

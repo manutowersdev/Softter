@@ -5,7 +5,6 @@ export default async (req, res) => {
     const { query: params } = req
 
     if (Object.values(params).length < 1) {
-      console.log("No hay query")
       res.json({
         statusText: "noResults",
         softees: [],

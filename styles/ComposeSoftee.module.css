@@ -169,3 +169,7 @@
 
 /* .imageIcon.darkMode:hover {
 } */
+
+.form button {
+  margin-top: 0.625rem;
+}
