@@ -22,7 +22,7 @@ export default function HomePage() {
   }, [user])
 
   function handleHastagClick(content) {
-    router.push("http://192.168.5.139:3000/search?t1=" + content)
+    router.push("http://localhost:3000/search?t1=" + content)
   }
 
   return (
