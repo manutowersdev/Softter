@@ -170,6 +170,6 @@
 /* .imageIcon.darkMode:hover {
 } */
 
-.form button {
+.form > button {
   margin-top: 0.625rem;
 }

@@ -68,7 +68,7 @@ export default function ComposeSoftee() {
 
   const handleChange = (event) => {
     const { value } = event.target
-    setMessage(value.toLowerCase())
+    setMessage(value)
   }
 
   const handleChangeHastags = (e) => {
@@ -80,14 +80,23 @@ export default function ComposeSoftee() {
     if (e.keyCode === 32) {
       if (!hastagOne) {
         setHastags("")
+        if (!HastagValue.replaceAll(" ", "")) {
+          return
+        }
         return setHastagOne(HastagValue.toLowerCase())
       }
       if (!hastagTwo) {
         setHastags("")
+        if (!HastagValue.replaceAll(" ", "")) {
+          return
+        }
         return setHastagTwo(HastagValue.toLowerCase())
       }
       if (!hastagThree) {
         setHastags("")
+        if (!HastagValue.replaceAll(" ", "")) {
+          return
+        }
         return setHastagThree(HastagValue.toLowerCase())
       }
     }
@@ -239,14 +248,14 @@ export default function ComposeSoftee() {
   )
 }
 
-function Hastag({ content, setHastag, inputRef }) {
+function Hastag({ content, setHastag }) {
   function handleClick() {
     setHastag(null)
   }
   return (
     <>
       <p onClick={handleClick} className={styles.hastag}>
-        <span onClick={inputRef.current.focus}>#</span>
+        <span>#</span>
         {content}
         <span className={styles.deleteHastag}>
           <button>x</button>

@@ -308,7 +308,6 @@ export async function getServerSideProps({ query }) {
     const res = await fetch(
       `http://192.168.5.139:3000/api/filterSoftees?${queryString}`
     )
-
     if (res.statusText !== "OK") {
       throw new Error("Error fetching the softee data.")
     }
